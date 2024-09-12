@@ -1,0 +1,24 @@
+# Redis Configuration
+redis:
+  image: "redis:6.0"
+  replicaCount: 3  # Change this to define the number of Redis nodes, from 1 to 10+
+  resources: {}
+
+# Redis Cluster Settings
+cluster:
+  enabled: true
+  replicas: 1  # Change this for replication factor
+  nodes: 3     # Number of Redis nodes to deploy (between 1 and 10+)
+
+# Persistence Configuration
+persistence:
+  enabled: true
+  storageClass: "standard"
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi  # Size of each node's persistent volume
+
+# Service Configuration
+service:
+  type: ClusterIP
+  port: 6379
